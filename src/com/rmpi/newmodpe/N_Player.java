@@ -20,4 +20,11 @@ public class N_Player extends ScriptableObject {
     }
 
     private static native void nativeSetRoundAttack(boolean enable, boolean hitMob, int distance);
+
+    @JSStaticFunction
+    public static void setCanFly(boolean enable) {
+        nativeSetCanFly(enable);
+    }
+
+    private static native void nativeSetCanFly(boolean enable);
 }
