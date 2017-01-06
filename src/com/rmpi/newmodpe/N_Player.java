@@ -27,4 +27,24 @@ public class N_Player extends ScriptableObject {
     }
 
     private static native void nativeSetCanFly(boolean enable);
+
+    @JSStaticFunction
+    public static void sendSimpleChat(String msg) {
+        sendRawChat(msg, false);
+    }
+
+    @JSStaticFunction
+    public static void sendRawChat(String msg, boolean hasSender) {
+        sendChat(msg, hasSender, true);
+    }
+
+    @JSStaticFunction
+    public static void sendChat(String msg, boolean hasSender, boolean safe) {
+        if (safe)
+            if (msg.equals(""))
+                return;
+        nativeSendChat(msg, hasSender);
+    }
+
+    private static native void nativeSendChat(String msg, boolean hasSender);
 }
